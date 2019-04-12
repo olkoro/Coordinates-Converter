@@ -1,7 +1,6 @@
 from pyproj import Proj, transform, Geod
 from tkinter import *
 from tkinter import ttk
-from collections import namedtuple
 
 p1 = Proj(init='epsg:3301', preserve_units=False)
 
@@ -35,7 +34,6 @@ def decimal_to_degrees(decimal):
     degrees = int(decimal)
     minutes = int((decimal - degrees) * 60)
     seconds = round((decimal - degrees - minutes / 60.) * 3600, 4)
-    #return degrees, minutes, seconds
     return "".join(map(str, [degrees, '° ', minutes, "' ", seconds, '"']))
 
 def degrees_to_decimal(degrees, minutes, seconds):
