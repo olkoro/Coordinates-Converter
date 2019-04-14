@@ -5,6 +5,7 @@ from tkinter import ttk
 
 p1 = Proj(init='epsg:3301', preserve_units=False)
 
+
 def calculate():
     """
     Calls conversion functions and writes the answer into the GUI
@@ -20,6 +21,7 @@ def calculate():
         (y, x) = wgs_to_est(x, y)
     answer1.set(x)
     answer2.set(y)
+
 
 def wgs_to_est(x,y):
     """
@@ -38,6 +40,7 @@ def wgs_to_est(x,y):
     y, x = p1(y, x)
     return y, x
 
+
 def est_to_wgs(x,y):
     """
     Converts from L-Est97 to WGS84
@@ -47,6 +50,7 @@ def est_to_wgs(x,y):
     """
     (x, y) = p1(y, x, inverse=True)
     return decimal_to_degrees(x), decimal_to_degrees(y)
+
 
 def decimal_to_degrees(decimal):
     """
@@ -58,6 +62,7 @@ def decimal_to_degrees(decimal):
     minutes = int((decimal - degrees) * 60)
     seconds = round((decimal - degrees - minutes / 60.) * 3600, 4)
     return "".join(map(str, [degrees, '° ', minutes, "' ", seconds, '"']))
+
 
 def degrees_to_decimal(degrees, minutes, seconds):
     """
@@ -86,6 +91,7 @@ def swap():
     answer2.__del__()
 
 
+# creating a window
 root = Tk()
 root.title("Python Advanced HW1")
 mainframe = ttk.Frame(root, padding="3 3 12 12")
@@ -112,8 +118,8 @@ ttk.Label(mainframe, textvariable=answer1).grid(column=1, row=2, sticky=E)
 ttk.Label(mainframe, text="in").grid(column=3, row=2, sticky=W)
 ttk.Label(mainframe, textvariable=unit1).grid(column=4, row=1, sticky=(W, E))
 ttk.Label(mainframe, textvariable=unit2).grid(column=4, row=2, sticky=(W, E))
-entry1.insert(0,"59°23'43.02"+'"')
-entry2.insert(0,"24°39'50.78"+'"')
+entry1.insert(0,"59° 23' 43.02"+'"')
+entry2.insert(0,"24° 39' 50.78"+'"')
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 entry1.focus()
 root.bind('<Return>', calculate)
