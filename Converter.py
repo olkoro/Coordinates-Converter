@@ -9,7 +9,7 @@ def calculate():
         x = float(xInput.get())
         y = float(yInput.get())
         (y, x) = est_to_wgs(x, y)
-    except:
+    except ValueError:
         x = xInput.get()
         y = yInput.get()
         (y, x) = wgs_to_est(x, y)
@@ -23,9 +23,9 @@ def wgs_to_est(x,y):
     ydeg = float(y.split('°')[0])
     ymin = float(y.split('°')[1].split("'")[0])
     ysek = float(y.split("'")[1].split('"')[0])
-    x,y = degrees_to_decimal(xdeg, xmin, xsek), degrees_to_decimal(ydeg, ymin, ysek)
-    y,x = p1(y,x)
-    return y,x
+    x, y = degrees_to_decimal(xdeg, xmin, xsek), degrees_to_decimal(ydeg, ymin, ysek)
+    y, x = p1(y, x)
+    return y, x
 
 def est_to_wgs(x,y):
     (x, y) = p1(y, x, inverse=True)
