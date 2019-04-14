@@ -1,4 +1,4 @@
-from pyproj import Proj, transform, Geod
+from pyproj import Proj
 from tkinter import *
 from tkinter import ttk
 
